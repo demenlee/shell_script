@@ -1,0 +1,16 @@
+## config_ssh
+#!/usr/bin/expect -f
+set timeout 10
+set i [lindex $argv 0]
+spawn ssh root@h$i
+expect {
+"(yes/no)?" {
+    send "yes\n"
+    expect "password:"
+    send "123\n"
+    }
+"password:" {
+    send "123\n"
+    }
+}
+interact
